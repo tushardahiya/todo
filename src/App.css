@@ -1,3 +1,63 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: darkgray;
+  height: 100vh;
+}
+
+.heading {
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 30px;
+}
+
+.input-container {
+  width: 70%;
+  padding: 20px;
+  margin: 30px;
+}
+
+.input {
+  margin: 10px;
+  height: 60px;
+  width: 70%;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: lightgray;
+}
+
+.add-button {
+  height: 60px;
+  width: 15%;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: lightblue;
+}
+
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  width: 200px;
+  padding: 5px;
+  width: 300px;
+  margin: 20px;
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: lightgreen;
+}
+
+.todo-name {
+  margin: 10px;
+}
+
+.todo-remove {
+  height: 20px;
+  background-color: pink;
+  border: 1px solid red;
+  border-radius: 4px;
+  cursor: pointer;
 }

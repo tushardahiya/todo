@@ -39,20 +39,28 @@ function App() {
 
   return (
     <div className="App">
-      <h1>To-Do app</h1>
-      <div>
+      <h1 className="heading">To-Do app</h1>
+      <div className="input-container">
         <input
+          className="input"
           onChange={(event) => setTodo(event.target.value)}
           placeholder="enter your task"
         />
-        <button onClick={addTodoHandler}>ADD</button>
+        <button className="add-button" onClick={addTodoHandler}>
+          ADD
+        </button>
       </div>
       <div>
         {todos.map((todo) => (
-          <>
-            <div>{todo.data.name}</div>
-            <button onClick={() => onRemoveHandler(todo)}>remove</button>
-          </>
+          <div key={todo.id} className="todo-container">
+            <div className="todo-name">{todo.data.name}</div>
+            <button
+              className="todo-remove"
+              onClick={() => onRemoveHandler(todo)}
+            >
+              X
+            </button>
+          </div>
         ))}
       </div>
     </div>
