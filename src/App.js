@@ -62,6 +62,10 @@ function App() {
   return (
     <div className="App">
       <h1 className="heading">TO-DO APP</h1>
+      <h2>
+        Enter your pending tasks.Click on the task button to mark it as done.
+        Click on remove button to remove them.
+      </h2>
       <div className="input-container">
         <input
           className="input"
@@ -72,6 +76,7 @@ function App() {
           ADD
         </button>
       </div>
+
       <div>
         {todos.map((todo) => (
           <div key={todo.id} className={`todo-container${todo.data.completed}`}>
