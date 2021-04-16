@@ -7,6 +7,10 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
+    fetchdata();
+  }, [setTodos, todo]);
+
+  const fetchdata = () => {
     const fetchedTodos = [];
     db.collection("todos")
       .get()
@@ -19,7 +23,7 @@ function App() {
         console.log(fetchedTodos);
         setTodos(fetchedTodos);
       });
-  }, [setTodos, todo]);
+  };
 
   const addTodoHandler = () => {
     if (todo) {
@@ -37,9 +41,27 @@ function App() {
     setTodos(newTodos);
   };
 
+  const onCompleteHandler = (todo) => {
+    const updatedTodos = todos.map((obj) => {
+      if (obj.id === todo.id) {
+        const updatedData = {
+          name: todo.data.name,
+          completed: !todo.data.completed,
+        };
+        return { id: obj.id, data: updatedData };
+      } else {
+        return obj;
+      }
+    });
+    setTodos(updatedTodos);
+    db.collection("todos")
+      .doc(todo.id)
+      .update({ completed: !todo.data.completed });
+  };
+
   return (
     <div className="App">
-      <h1 className="heading">To-Do app</h1>
+      <h1 className="heading">TO-DO APP</h1>
       <div className="input-container">
         <input
           className="input"
@@ -52,13 +74,15 @@ function App() {
       </div>
       <div>
         {todos.map((todo) => (
-          <div key={todo.id} className="todo-container">
-            <div className="todo-name">{todo.data.name}</div>
+          <div key={todo.id} className={`todo-container${todo.data.completed}`}>
+            <div onClick={() => onCompleteHandler(todo)} className="todo-name">
+              {todo.data.name}
+            </div>
             <button
               className="todo-remove"
               onClick={() => onRemoveHandler(todo)}
             >
-              X
+              REMOVE
             </button>
           </div>
         ))}
