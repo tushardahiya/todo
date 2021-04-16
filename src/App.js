@@ -20,7 +20,6 @@ function App() {
           let data = doc.data();
           fetchedTodos.push({ id, data });
         });
-        console.log(fetchedTodos);
         setTodos(fetchedTodos);
       });
   };
